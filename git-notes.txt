@@ -1,0 +1,122 @@
+New file   (firstfile)        working area  - (untracked file for git)
+add file to local git repo    staging area  - (added to local git repo)
+commit file to local git repo local git area  
+
+push to remote repo           remote git repo  (global/public git repo) --- need internet connection
+-----------------------------------------
+
+1. Create a new git file say "firstfile"
+2. create an empty git repo using "git init" command. (one time command to create .git folder)
+3. git status
+4. git add "firstfile"     #add to staging area
+5. git status 
+6. git commit -m "initial check-in"              #pushed to local git repo
+7. git status  
+--------------------------------------------
+
+git log        # to check your commit hostory
+git branch     # to check current branch (by default master)
+
+vi firstfile 
+# make some changes
+:wq!
+
+git status     # modified file
+git add .      # change is added to staging area
+git commit -m "second check-in"
+git status
+git log
+git show     # comare the last 2 versions
+--------------------------------------
+# configure github account and push repo
+
+git remote add origin https://github.com/puneetbhatia77/git-demo-27june.git
+git remote -v
+git push origin master
+-------------------------
+git branch test  # to create test branch
+git branch
+git checkout test  # switch to test branch
+git add .
+git commit -m "test branch file"
+git push origin master
+-----------------------
+#merge branches
+git checkout master
+git merge test
+git push origin master
+-----------------------
+
+
+Other Git commands
+
+git branch
+echo "This is testfile at master branch" > testfile
+git add testfile
+git commit -m "initial checkin for test file"
+git push origin master
+
+
+git checkout -b mybranch
+git branch
+echo "This is testfile in mybranch" > testfile
+git add testfile
+git commit -m "initial checkin for test file in mybranch"
+git push origin mybranch
+git checkout -     # switch back to master
+git merge --help
+git merge mybranch
+git status
+git push origin master
+git branch
+
+# Now update testfile manually at github - "initial checkin for test file by other user"
+vi testfile -> "initial checkin for test file by other user"
+
+git add testfile
+git commit -m "initial checkin for test file by me"
+git push origin master   - "It will ask first to pull repo for latest changes"
+git pull        -  mege conflict that needs to be resolved manually
+vi testfile     - resolve merge conflicts
+git status
+git add testfile
+git commit -m "initial checkin for test file by us"
+git push origin master
+# verify at github
+
+
+
+vi .git/config
+git commit --amend --reset-author
+git config --global user.name Puneet
+
+or
+
+git config --global user.name "Puneet"
+git config --global user.mail "puneetbhatia77@gmail.com"
+
+or  change .git/config
+
+[user]
+    name = "Puneet Kumar Bhatia"
+    mail = "puneetbhatia77@gmail.com"
+
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+# and add id_rsa.pub contents to github -> settings -> ssh keys
+ssh -T git@github.com
+cd ../
+rm -rf demo/
+git clone git@github.com:puneetbhatia77/demo.git
+cd demo/
+------------------------
+cat .git/config    ->  change git url - git@git....
+or git remote remove origin   -> git remote add origin git@git......
+-------------------
+vi testfile2
+git add testfile2
+git commit -m "initial checkin for test file 2"
+git push origin master
+# it will not ask for credentials now.
+
+
